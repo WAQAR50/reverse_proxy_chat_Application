@@ -1,0 +1,30 @@
+version: '2'
+services:
+    reverseproxy:
+        image: reverse-proxy-nginx
+        ports:
+            - 3000:3000
+            - 8080:8080
+            - 5432:5432
+        restart: always
+ 
+    chat:
+        depends_on:
+            - reverseproxy
+            - chatserver
+        image: chat:latest
+        restart: always
+ 
+    chatserver:
+        depends_on:
+            - reverseproxy
+            - postgres
+        image: chatserver:latest
+        restart: always
+    
+    postgres:
+      depends_on:
+            - reverseproxy
+      image: postgres
+      environment:
+        POSTGRES_PASSWORD: test123

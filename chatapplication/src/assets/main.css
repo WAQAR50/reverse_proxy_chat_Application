@@ -1,0 +1,15 @@
+@import './base.css';
+body {
+  display: flex;
+  place-items: center;
+}
+#app {
+  max-width: 100%;
+  margin: 0 auto;
+  min-width: 50%;
+  text-align: center;
+  font-weight: normal;
+}
+
+
+
